@@ -7357,8 +7357,8 @@ export class AppStore extends TypedBaseStore<IAppState> {
   }
 
   public async _startPullRequest(repository: Repository) {
-    const { tip, defaultBranch } =
-      this.repositoryStateCache.get(repository).branchesState
+    const { branchesState } = this.repositoryStateCache.get(repository)
+    const { defaultBranch, tip } = branchesState
 
     if (tip.kind !== TipState.Valid) {
       // Shouldn't even be able to get here if so - just a type check
